@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/Header';
+import ItemsBlock from './components/itemsBlock/ItemsBlock';
+import Footer from './components/footer/Footer';
+import { items1, items2 } from './items';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='body'>
+      <div className="container">
+        <Header />
+
+        <ItemsBlock headerText={"Наушники"} items={items1} />
+
+        <ItemsBlock headerText={"Наушники"} items={items2} />
+
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <Footer />
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
