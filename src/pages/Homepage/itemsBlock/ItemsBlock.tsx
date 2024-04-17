@@ -1,8 +1,8 @@
 import { FC } from "react";
 import Item from "../item/Item";
-import { ItemProps } from "../../items";
 import { v4 as uuidv4 } from 'uuid';
 import { Container, HeaderText, Wrapper } from './components/index'
+import { ItemProps } from "../../../items";
 
 interface IItemsBlockProps {
   headerText: string,
@@ -17,6 +17,7 @@ const ItemsBlock: FC<IItemsBlockProps> = ({ headerText, items }) => {
         {items.map((item) => (
           <Item
             key={uuidv4()}
+            index={item.index}
             img={item.img}
             name={item.name}
             price={item.price}

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import {
   Button,
   ControlsWrapper,
@@ -8,10 +9,13 @@ import {
   RatingWrapper,
   Wrapper,
 } from "./components/index";
-import star from "../../assets/star.jpg";
+import star from '../../../assets/star.jpg'
 import styles from "./item.module.css";
+import { addItemToCart } from "../../..";
+import { useDispatch } from "react-redux";
 
 interface ItemProps {
+  index: number;
   img: string;
   name: string;
   price: number;
@@ -19,7 +23,22 @@ interface ItemProps {
   rating: number;
 }
 
-const Item: FC<ItemProps> = ({ img, name, price, oldPrice, rating }) => {
+const Item: FC<ItemProps> = ({ index, img, name, price, oldPrice, rating }) => {
+  const dispatch = useDispatch();
+
+  const addItem = () => {
+    const item = {
+      index,
+      img,
+      name,
+      price,
+      oldPrice,
+      rating,
+      count: 1
+    }
+    dispatch(addItemToCart(item));
+  }
+
   return (
     <ItemBlock>
       <Wrapper>
@@ -41,7 +60,7 @@ const Item: FC<ItemProps> = ({ img, name, price, oldPrice, rating }) => {
                 {price} $
               </p>
               <p className={styles.oldPrice}>{oldPrice} $</p>
-              <Button>Купить</Button>
+              <Button onClick={addItem}>Купить</Button>
             </PriceWrapper>
           </ControlsWrapper>
         </div>

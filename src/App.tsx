@@ -1,20 +1,19 @@
 import './App.css';
-import Header from './components/header/Header';
-import ItemsBlock from './components/itemsBlock/ItemsBlock';
 import Footer from './components/footer/Footer';
-import { items1, items2 } from './items';
-
+import Homepage from './pages/Homepage/Homepage';
+import Header from './components/header/Header';
+import { Routes, Route } from 'react-router';
+import Cartpage from './pages/Cartpage/Cartpage';
 
 function App() {
   return (
     <div className='body'>
       <div className="container">
         <Header />
-
-        <ItemsBlock headerText={"Наушники"} items={items1} />
-
-        <ItemsBlock headerText={"Наушники"} items={items2} />
-
+        <Routes>
+          <Route path={"/"} element={<Homepage />} />
+          <Route path={"/item"} element={<Cartpage />} />
+        </Routes>
         <div style={{display: "flex", justifyContent: "center"}}>
           <Footer />
         </div>
@@ -23,4 +22,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
