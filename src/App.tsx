@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage/Homepage';
 import Header from './components/header/Header';
 import { Routes, Route } from 'react-router';
 import Cartpage from './pages/Cartpage/Cartpage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
         <Header />
         <Routes>
           <Route path={"/"} element={<Homepage />} />
-          <Route path={"/item"} element={<Cartpage />} />
+          <Route path={"/cart"} element={<Cartpage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <div className='footer'>
           <Footer />
         </div>
       </div>

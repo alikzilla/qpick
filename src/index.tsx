@@ -56,7 +56,22 @@ type Actions = ReturnType<typeof addCount> | ReturnType<typeof removeCount> | Re
 const reducer = (state: DefaultState = defaultState, action: Actions): DefaultState => {
   switch (action.type) {
     case ADD_ITEM_TO_CART:
-      state.items = [...state.items, action.payload];
+      const item = state.items.find((item) => item.index === action.payload.index);
+      let gotItem: IItem[] = [];
+      if (item && item.count > 0) {
+        gotItem = [...state.items.map((item) => {
+          if (item.index === action.payload.index) {
+            item.count += 1;
+          } 
+          return item;
+        })];
+      } else {
+        gotItem = [...state.items, action.payload];
+      }
+
+      state = {
+        items: gotItem
+      };
 
       return state;
     case ADD_COUNT:
@@ -69,8 +84,6 @@ const reducer = (state: DefaultState = defaultState, action: Actions): DefaultSt
           })]
         }
 
-      console.log(action.payload)
-      console.log(state)
       return state;
     case REMOVE_COUNT:
       const element = state.items.find((item) => item.index === action.payload);
